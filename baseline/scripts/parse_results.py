@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# scripts/parse_results.py (corrected)
+# scripts/parse_results.py
 
 import json
 import glob
@@ -22,7 +22,7 @@ def parse_iperf3_json(filepath):
 
     # For TCP - iperf3 puts results in sum_sent or sum_received
     if 'sum_sent' in end:
-        tcp_sum = end['sum_sent']  # FIXED: was looking for 'sum'
+        tcp_sum = end['sum_sent']
         metrics = {
             'test_type': 'TCP',
             'bits_per_second': tcp_sum.get('bits_per_second', 0),
@@ -31,7 +31,7 @@ def parse_iperf3_json(filepath):
             'sender': True
         }
     # For UDP
-    elif 'sum' in end and end.get('sum', {}).get('udp'):  # FIXED: check for udp flag
+    elif 'sum' in end and end.get('sum', {}).get('udp'):
         udp_sum = end['sum']
         metrics = {
             'test_type': 'UDP',
@@ -49,7 +49,6 @@ def parse_iperf3_json(filepath):
     test_start = start.get('test_start', {})
     metrics['protocol'] = test_start.get('protocol', 'unknown')
 
-    # FIXED: target_bitrate might be in different locations or use -b flag
     # For TCP with -b, it's in test_start
     metrics['target_bitrate'] = test_start.get('target_bitrate', 0)
 
