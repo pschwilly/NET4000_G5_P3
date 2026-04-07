@@ -1,0 +1,6 @@
+experimentation_results/heuristic/*
+experimentation_results/RL/*
+experimentation_results/monitoring/*
+!experimentation_results/heuristic/.gitkeep
+!experimentation_results/RL/.gitkeep
+!experimentation_results/monitoring/.gitkeep

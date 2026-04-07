@@ -16,15 +16,15 @@ run_ue_traffic() {
     local port=$2
     local ue_num=$3
     local duration=$4
-    
+
     # Generate random values for THIS UE
     local protocol=$(rand 1 10)
     local bw=$(rand 5 50)
     local pkt_size=$(rand 500 1400)
-    
+
     # Add a tiny delay to ensure different RANDOM values
     sleep 0.1
-    
+
     if [ $protocol -le 7 ]; then
         # TCP traffic
         echo "  UE$ue_num: TCP ${bw}Mbps for ${duration}s"
@@ -52,20 +52,20 @@ trap cleanup SIGINT
 
 # Main loop - runs forever until Ctrl+C
 while true; do
-    # Random duration for this cycle (15-45 seconds)
-    cycle_duration=$(rand 15 45)
-    
+    # Random duration for this cycle (45-180 seconds)
+    cycle_duration=$(rand 45 180)
+
     echo "[$(date +%H:%M:%S)] New cycle - ${cycle_duration}s"
-    
+
     # Start traffic for both UEs with independent random values
     run_ue_traffic "$UE1_IP" "5201" "1" "$cycle_duration"
     run_ue_traffic "$UE2_IP" "5202" "2" "$cycle_duration"
-    
+
     # Wait for this cycle to complete
     sleep $cycle_duration
-    
+
     # Brief pause between cycles
     sleep 2
-    
+
     echo ""
 done
