@@ -1,8 +1,7 @@
-# NET4000 Group 5 – Project 3
-**Reinforcement Learning–Based Network Slicing in Emulated 5G Cores**
+# Reinforcement Learning–Based Network Slicing in Emulated 5G Cores
 
 Jayden Côté, Patrick Schwilden, Karar Alfaris, Nicolas Gagnon
-School of Information Technology – Carleton University
+School of Information Technology, Carleton University
 
 ---
 
